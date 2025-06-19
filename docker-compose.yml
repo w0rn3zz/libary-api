@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:17
+    container_name: libary_db
+    volumes:
+     - ./docker/volumes/db-data:/var/lib/postges/data
+    env_file:
+    - .env-docker
+    ports:
+    - 5433:5432
+    healthcheck:
+      test: pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    restart: unless-stopped
+  app:
+    container_name: libary_app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+    - ./:/app
+    env_file:
+    - .env-docker
+    depends_on:
+      - db
+    entrypoint: ["/bin/sh", "/app/docker/scripts/init.sh"]
+    ports:
+    - 8000:8000

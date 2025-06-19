@@ -1,0 +1,8 @@
+.env
+.env-docker
+.vscode
+.venv
+docker/volumes/db-data/*
+__pycache__/
+.DS_Store
+!volumes/db-data/.gitkeep

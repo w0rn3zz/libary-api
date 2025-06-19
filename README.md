@@ -23,10 +23,60 @@
 - Docker
 
 ## 📂 Структура проекта (будет обновляться)
+```
+library-api
+├── alembic/
+│   ├── env.py
+│   ├── README
+│   ├── script.py.mako
+│   └── versions/
+├── docker/
+│   ├── scripts/
+│   │   └── init.sh
+│   └── volumes/
+│       └── db-data/
+│           └── .gitkeep
+├── src/
+│   ├── main.py
+│   ├── database.py               # db connection related 
+│   ├── exceptions.py             # global exceptions
+│   ├── dao/
+│   │   └── base.py
+│   ├── config/
+│   │   ├── app.py                # app-wide config
+│   │   ├── base.py               # config logic
+│   │   └── database.py           # DB URL config
+│   ├── books/
+│   │   ├── models.py             # db models
+│   │   └── router.py             # endpoints
+│   ├── borrows/
+│   │   └── models.py
+│   ├── readers/
+│   │   └── models.py
+│   └── users/
+│       ├── auth.py               # auth logic
+│       ├── dao.py                # user queries
+│       ├── dependencies.py
+│       ├── models.py             # db models
+│       ├── router.py             # endpoints
+│       └── schemas.py            # pydantic models
+├── .env
+├── .env-docker
+├── .gitignore
+├── README.md
+├── Dockerfile
+├── docker-compose.yml
+├── requirements.txt
+├── alembic.ini
+
+```
 ## 🚧 Статус
 
-🔨 Проект находится в стадии инициализации.  
-В ближайших коммитах будет добавлена структура проекта, базовые модели и JWT-аутентификация.
+- Добавлены базовые модели (Book, Reader, Borrow, User)
+- Реализованы эндпоинты для JWT авторизации
+
+В ближайшее время будет реализовано управление книгами
+
 
 ## 👤 Автор
 
