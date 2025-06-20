@@ -31,3 +31,19 @@ class IncorrectTokenFormatException(LibaryAPIException):
 class UserIsNotPresentException(LibaryAPIException):
     status_code=status.HTTP_401_UNAUTHORIZED
     detail = 'Пользователь не найден'
+
+class BookNotFoundException(LibaryAPIException):
+    status_code=status.HTTP_404_NOT_FOUND
+    detail = 'Книга не найдена'
+
+class BookDeleteFailedException(LibaryAPIException):
+    status_code=status.HTTP_400_BAD_REQUEST
+    detail = 'Ошибка при удалении книги'
+
+class BookAddFailedException(LibaryAPIException):
+    status_code=status.HTTP_400_BAD_REQUEST
+    detail = 'Ошибка при добавлении книги'
+
+class BookUpdateFailedException(LibaryAPIException):
+    status_code=status.HTTP_400_BAD_REQUEST
+    detail = 'Ошибка при обновлении книги'

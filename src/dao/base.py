@@ -60,7 +60,7 @@ class BaseDAO:
             entity = result.scalar_one_or_none()
             
             if not entity:
-                return False
+                raise ValueError("Not found")
             
             await session.delete(entity)
             await session.commit()

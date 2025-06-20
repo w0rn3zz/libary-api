@@ -18,4 +18,5 @@ class UserResponseSchema(BaseModel):
 class UserUpdateSchema(BaseModel):
     email: Optional[str] = None
     username: Optional[str] = None
+    password: str
     

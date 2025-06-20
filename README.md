@@ -30,6 +30,7 @@ library-api
 │   ├── README
 │   ├── script.py.mako
 │   └── versions/
+│ 
 ├── docker/
 │   ├── scripts/
 │   │   └── init.sh
@@ -38,28 +39,29 @@ library-api
 │           └── .gitkeep
 ├── src/
 │   ├── main.py
-│   ├── database.py               # db connection related 
-│   ├── exceptions.py             # global exceptions
+│   ├── database.py
+│   ├── exceptions.py
 │   ├── dao/
 │   │   └── base.py
 │   ├── config/
-│   │   ├── app.py                # app-wide config
-│   │   ├── base.py               # config logic
-│   │   └── database.py           # DB URL config
+│   │   ├── app.py
+│   │   ├── base.py
+│   │   └── database.py
 │   ├── books/
-│   │   ├── models.py             # db models
-│   │   └── router.py             # endpoints
+│   │   ├── models.py
+│   │   ├── router.py
+│   │   └── schemas.py
 │   ├── borrows/
 │   │   └── models.py
 │   ├── readers/
 │   │   └── models.py
 │   └── users/
-│       ├── auth.py               # auth logic
-│       ├── dao.py                # user queries
+│       ├── auth.py
+│       ├── dao.py
 │       ├── dependencies.py
-│       ├── models.py             # db models
-│       ├── router.py             # endpoints
-│       └── schemas.py            # pydantic models
+│       ├── models.py
+│       ├── router.py
+│       └── schemas.py
 ├── .env
 ├── .env-docker
 ├── .gitignore
@@ -69,13 +71,15 @@ library-api
 ├── requirements.txt
 ├── alembic.ini
 
+
 ```
 ## 🚧 Статус
 
 - Добавлены базовые модели (Book, Reader, Borrow, User)
 - Реализованы эндпоинты для JWT авторизации
+- Реализовано управление книгами, защищено JWT(CRUD)
 
-В ближайшее время будет реализовано управление книгами
+В ближайшее время будет реализовано управление читателями
 
 
 ## 👤 Автор
