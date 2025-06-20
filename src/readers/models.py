@@ -8,4 +8,4 @@ class Reader(Base):
     __tablename__ = "readers"
     
     email: Mapped[str] = mapped_column(nullable=False, unique=True)
-    name: Mapped[str] = mapped_column(unique=True, nullable=False)
+    name: Mapped[str] = mapped_column(nullable=False)

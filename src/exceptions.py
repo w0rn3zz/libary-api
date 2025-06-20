@@ -31,6 +31,9 @@ class IncorrectTokenFormatException(LibaryAPIException):
 class UserIsNotPresentException(LibaryAPIException):
     status_code=status.HTTP_401_UNAUTHORIZED
     detail = 'Пользователь не найден'
+    
+
+#books
 
 class BookNotFoundException(LibaryAPIException):
     status_code=status.HTTP_404_NOT_FOUND
@@ -47,3 +50,21 @@ class BookAddFailedException(LibaryAPIException):
 class BookUpdateFailedException(LibaryAPIException):
     status_code=status.HTTP_400_BAD_REQUEST
     detail = 'Ошибка при обновлении книги'
+
+#readers
+
+class ReaderUpdateFailedException(LibaryAPIException):
+    status_code=status.HTTP_400_BAD_REQUEST
+    detail = 'Ошибка при обновлении читателя'
+
+class ReaderNotFoundException(LibaryAPIException):
+    status_code=status.HTTP_404_NOT_FOUND
+    detail = 'Читатель не найден'
+
+class ReaderDeleteFailedException(LibaryAPIException):
+    status_code=status.HTTP_400_BAD_REQUEST
+    detail = 'Ошибка при удалении читателя'
+
+class ReaderAddFailedException(LibaryAPIException):
+    status_code=status.HTTP_400_BAD_REQUEST
+    detail = 'Ошибка при добавлении читателя'
