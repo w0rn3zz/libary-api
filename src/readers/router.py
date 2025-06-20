@@ -29,7 +29,7 @@ async def get__by_id(
     return reader
 
 
-@router.post("/add")
+@router.post("")
 async def add_reader(
     data: ReaderAddSchema, current_user: User = Depends(get_current_user)
 ):
@@ -40,7 +40,7 @@ async def add_reader(
         raise ReaderAddFailedException
 
 
-@router.delete("/delete/{reader_id}")
+@router.delete("/{reader_id}")
 async def delete_reader_by_id(
     reader_id: int, current_user: User = Depends(get_current_user)
 ):
@@ -51,7 +51,7 @@ async def delete_reader_by_id(
         raise ReaderDeleteFailedException
 
 
-@router.patch("/update/{reader_id}")
+@router.patch("/{reader_id}")
 async def update_reader_by_id(
     reader_id: int,
     data: ReaderUpdateSchema,

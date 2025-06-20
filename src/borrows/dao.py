@@ -76,3 +76,13 @@ class BorrowDAO(BaseDAO):
 
             await session.commit()
             return borrow
+
+    @classmethod
+    async def get_reader_active_borrows(cls, reader_id: int):
+        async with async_session() as session:
+            query = select(Borrow).where(
+                    Borrow.reader_id == reader_id, Borrow.return_date == None
+                )
+            active_borrows = await session.execute(query)
+            return active_borrows.scalars().all()
+            

@@ -1,3 +1,5 @@
+from typing import List
+
 from fastapi import APIRouter, Depends
 
 from src.books.schemas import BookAddSchema, BookResponseSchema, BookUpdateSchema
@@ -25,7 +27,7 @@ async def get_book_by_id(
     return book
 
 
-@router.post("/add")
+@router.post("")
 async def add_book(data: BookAddSchema, current_user: User = Depends(get_current_user)):
     try:
         await BookDAO.add(**data.model_dump())
@@ -34,7 +36,7 @@ async def add_book(data: BookAddSchema, current_user: User = Depends(get_current
         raise BookAddFailedException
 
 
-@router.delete("/delete/{book_id}")
+@router.delete("/{book_id}")
 async def delete_book_by_id(
     book_id: int, current_user: User = Depends(get_current_user)
 ):
@@ -45,7 +47,7 @@ async def delete_book_by_id(
         raise BookDeleteFailedException
 
 
-@router.patch("/update/{book_id}")
+@router.patch("/{book_id}")
 async def update_book_by_id(
     book_id: int, data: BookUpdateSchema, current_user: User = Depends(get_current_user)
 ) -> BookResponseSchema:
@@ -53,3 +55,7 @@ async def update_book_by_id(
         return await BookDAO.update_by_id(book_id, **data.model_dump())
     except ValueError:
         raise BookUpdateFailedException
+
+@router.get("")
+async def get_all_books(current_user: User = Depends(get_current_user)) -> List[BookResponseSchema]:
+    return await BookDAO.find_all()

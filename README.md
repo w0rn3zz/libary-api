@@ -30,37 +30,46 @@ library-api/
 │   ├── README
 │   ├── script.py.mako
 │   └── versions/
-│       
+│
+│
 ├── docker/
 │   ├── scripts/
 │   │   └── init.sh
 │   └── volumes/
 │       └── db-data/
 │           └── .gitkeep
+│
 ├── src/
 │   ├── main.py
 │   ├── database.py
 │   ├── exceptions.py
+│   │
 │   ├── dao/
 │   │   └── base.py
+│   │
 │   ├── config/
 │   │   ├── app.py
 │   │   ├── base.py
 │   │   └── database.py
+│   │
 │   ├── books/
 │   │   ├── dao.py
 │   │   ├── models.py
 │   │   ├── router.py
 │   │   └── schemas.py
+│   │
 │   ├── borrows/
 │   │   ├── dao.py
 │   │   ├── models.py
-│   │   └── router.py
+│   │   ├── router.py
+│   │   └── schemas.py
+│   │
 │   ├── readers/
 │   │   ├── dao.py
 │   │   ├── models.py
 │   │   ├── router.py
 │   │   └── schemas.py
+│   │
 │   └── users/
 │       ├── auth.py
 │       ├── dao.py
@@ -68,6 +77,7 @@ library-api/
 │       ├── models.py
 │       ├── router.py
 │       └── schemas.py
+│
 ├── alembic.ini
 ├── docker-compose.yml
 ├── Dockerfile
@@ -87,8 +97,9 @@ library-api/
 - Реализовано управление книгами(CRUD, защищено JWT)
 - Реализовано управлние читателями (CRUD, защищено JWT)
 - Реализована выдача книг
+- Реализовано получение информации: список всех книг, список всех книг взятых читателями
 
-В ближайшее время будет реализовано получение информации: список всех книг, список всех книг взятых читателями
+В ближайшее время будут написаны юнит-тесты
 
 
 ## 👤 Автор
