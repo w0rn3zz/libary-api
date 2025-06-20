@@ -10,7 +10,7 @@ class DatabaseConfig(BaseConfig):
     DB_USER: str
     DB_PASS: str
     DB_NAME: str
-    
+
     @root_validator(skip_on_failure=True)
     def generate_database_url(cls, v):
         v["DATABASE_URL"] = (

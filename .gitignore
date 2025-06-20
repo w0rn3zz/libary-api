@@ -5,4 +5,5 @@
 docker/volumes/db-data/*
 __pycache__/
 .DS_Store
-!volumes/db-data/.gitkeep
+!docker/volumes/db-data/.gitkeep
+structure.txt

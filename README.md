@@ -24,13 +24,13 @@
 
 ## 📂 Структура проекта (будет обновляться)
 ```
-library-api
+library-api/
 ├── alembic/
 │   ├── env.py
 │   ├── README
 │   ├── script.py.mako
 │   └── versions/
-│     
+│       
 ├── docker/
 │   ├── scripts/
 │   │   └── init.sh
@@ -53,7 +53,9 @@ library-api
 │   │   ├── router.py
 │   │   └── schemas.py
 │   ├── borrows/
-│   │   └── models.py
+│   │   ├── dao.py
+│   │   ├── models.py
+│   │   └── router.py
 │   ├── readers/
 │   │   ├── dao.py
 │   │   ├── models.py
@@ -73,7 +75,7 @@ library-api
 ├── requirements.txt
 ├── .env
 ├── .env-docker
-├── .gitignore
+└── .gitignore
 
 
 
@@ -84,8 +86,9 @@ library-api
 - Реализованы эндпоинты для JWT авторизации
 - Реализовано управление книгами(CRUD, защищено JWT)
 - Реализовано управлние читателями (CRUD, защищено JWT)
+- Реализована выдача книг
 
-В ближайшее время будет реализованы выдача и возврат книг
+В ближайшее время будет реализовано получение информации: список всех книг, список всех книг взятых читателями
 
 
 ## 👤 Автор

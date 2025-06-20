@@ -6,6 +6,6 @@ from src.database import Base
 
 class Reader(Base):
     __tablename__ = "readers"
-    
+
     email: Mapped[str] = mapped_column(nullable=False, unique=True)
     name: Mapped[str] = mapped_column(nullable=False)

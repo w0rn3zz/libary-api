@@ -5,11 +5,11 @@ services:
     image: postgres:17
     container_name: libary_db
     volumes:
-     - ./docker/volumes/db-data:/var/lib/postges/data
+      - ./docker/volumes/db-data:/var/lib/postgresql/data
     env_file:
-    - .env-docker
+      - .env-docker
     ports:
-    - 5433:5432
+      - 5433:5432
     healthcheck:
       test: pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}
       interval: 30s
@@ -17,17 +17,19 @@ services:
       retries: 3
       start_period: 60s
     restart: unless-stopped
+
   app:
     container_name: libary_app
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
-    - ./:/app
+      - ./:/app
     env_file:
-    - .env-docker
+      - .env-docker
     depends_on:
-      - db
-    entrypoint: ["/bin/sh", "/app/docker/scripts/init.sh"]
+      db:
+        condition: service_healthy
+    command: ["/bin/sh", "/app/docker/scripts/init.sh"]
     ports:
-    - 8000:8000
+      - 8000:8000

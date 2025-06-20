@@ -5,7 +5,13 @@ from jose import jwt, JWTError
 from src.config import settings
 from src.users.dao import UserDAO
 from src.users.models import User
-from src.exceptions import TokenAbsentException, TokenExpiredException, IncorrectTokenFormatException, UserIsNotPresentException
+from src.exceptions import (
+    TokenAbsentException,
+    TokenExpiredException,
+    IncorrectTokenFormatException,
+    UserIsNotPresentException,
+)
+
 
 def get_token(request: Request):
     token = request.cookies.get("libary_access_token")
@@ -13,11 +19,10 @@ def get_token(request: Request):
         raise TokenAbsentException
     return token
 
+
 async def get_current_user(token: str = Depends(get_token)):
     try:
-        payload = jwt.decode(
-            token, settings.app.SECRET_KEY, settings.app.ALGORITHM
-        )
+        payload = jwt.decode(token, settings.app.SECRET_KEY, settings.app.ALGORITHM)
     except JWTError:
         IncorrectTokenFormatException
     expire: str = payload.get("exp")

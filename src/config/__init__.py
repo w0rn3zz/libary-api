@@ -8,4 +8,5 @@ class Settings(BaseModel):
     app: AppConfig = AppConfig()
     database: DatabaseConfig = DatabaseConfig()
 
+
 settings = Settings()
