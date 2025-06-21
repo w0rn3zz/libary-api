@@ -1,7 +1,6 @@
 from fastapi import APIRouter, Response, Depends
 
 
-
 from src.users.schemas import (
     UserRegisterSchema,
     UserAuthSchema,
@@ -34,6 +33,7 @@ async def register_user(user_data: UserRegisterSchema):
         username=user_data.username,
         hashed_password=hashed_password,
     )
+    return {"status": "ok", "message": "success"}
 
 
 @router.post("/login")
@@ -65,6 +65,7 @@ async def delete_user_me(current_user: User = Depends(get_current_user)):
     if not current_user:
         raise UserIsNotPresentException
     await UserDAO.delete_by_id(current_user.id)
+    return {"status": "ok", "message": "success"}
 
 
 @router.patch("/me", response_model=UserResponseSchema)
@@ -75,7 +76,8 @@ async def update_user_me(
     update_data = user_data.model_dump(exclude_unset=True)
 
     if update_data:
-        updated_user = await UserDAO.update_user_by_id(user_id=current_user.id, **update_data)
-        
-    
+        updated_user = await UserDAO.update_user_by_id(
+            user_id=current_user.id, **update_data
+        )
+
     return updated_user
