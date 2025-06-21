@@ -1,4 +1,4 @@
-from pydantic import SecretStr, root_validator
+from pydantic import SecretStr, model_validator,  Field
 from sqlalchemy import URL
 
 from .base import BaseConfig
@@ -11,9 +11,12 @@ class DatabaseConfig(BaseConfig):
     DB_PASS: str
     DB_NAME: str
 
-    @root_validator(skip_on_failure=True)
-    def generate_database_url(cls, v):
-        v["DATABASE_URL"] = (
-            f"postgresql+asyncpg://{v['DB_USER']}:{v['DB_PASS']}@{v['DB_HOST']}:{v['DB_PORT']}/{v['DB_NAME']}"
+    DATABASE_URL: str = Field(default=None)
+
+    @model_validator(mode="before")
+    def generate_database_url(cls, values: dict) -> dict:
+        values["DATABASE_URL"] = (
+            f"postgresql+asyncpg://{values['DB_USER']}:{values['DB_PASS']}@{values['DB_HOST']}:"
+            f"{values['DB_PORT']}/{values['DB_NAME']}"
         )
-        return v
+        return values
