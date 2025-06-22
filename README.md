@@ -60,7 +60,7 @@
 
 ```
 # 1. Клонировать репозиторий
-git clone https://github.com/your-repo/library-api.git
+git clone https://github.com/w0rn3zz/library-api.git
 cd library-api
 
 # 2. Из корневой директории проекта выполните:
